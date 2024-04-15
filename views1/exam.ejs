@@ -1,0 +1,40 @@
+<!-- views/exam.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= exam.name %></title>
+    <script>
+        let time = <%= exam.time %> * 60; // Convert minutes to seconds
+        let timer;
+
+        function startTimer() {
+            timer = setInterval(function() {
+                time--;
+                document.getElementById('timer').textContent = time;
+                if (time <= 0) {
+                    clearInterval(timer);
+                    alert('Time is up!');
+                }
+            }, 1000);
+        }
+
+        window.onload = startTimer;
+    </script>
+</head>
+<body>
+    <h1><%= exam.name %></h1>
+    <p>Time: <span id="timer"><%= exam.time %></span> minutes</p>
+    <form id="quiz-form">
+        <% exam.questions.forEach(function(question, index) { %>
+            <div>
+                <p><%= question.text %></p>
+                <% question.answerOptions.forEach(function(option, optionIndex) { %>
+                    <input type="radio" name="question-<%= index %>" value="<%= optionIndex %>"> <%= option %>
+                <% }); %>
+            </div>
+        <% }); %>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

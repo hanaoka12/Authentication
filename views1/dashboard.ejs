@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+            background-color: #af574c;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .navbar h2 {
+            color: white;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .logout-button {
+            background-color: #af574c;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .logout-button:hover {
+            background-color: #8d4639;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .exam {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .exam-title {
+            margin: 0;
+            color: #333;
+        }
+        .start-exam-button {
+            background-color: #af574c;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .start-exam-button:hover {
+            background-color: #8d4639;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>Dashboard</h2>
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+    <div class="container">
+        <h1>Exams</h1>
+        <% if (typeof exams !== 'undefined' && exams.length > 0) { %>
+            <% exams.forEach(function(exam) { %>
+                <div class="exam">
+                    <h2 class="exam-title"><%= exam.name %></h2>
+                    <a href="/exam/<%= exam._id %>" class="start-exam-button">Start Exam</a>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No exams available.</p>
+        <% } %>
+    </div>
+</body>
+</html>
+
+
